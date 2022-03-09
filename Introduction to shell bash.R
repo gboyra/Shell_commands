@@ -27,10 +27,10 @@ cd ..  # directory above; similarly:
 ls .  # same as ls
 ls ..  # lists the parent directory
 cd ~  # home (not working) directory; this allways takes you home 
-  ls ~
+ls ~
   
-  # Copy files
-  cp original.txt duplicate.txt
+# Copy files
+cp original.txt duplicate.txt
 # if duplicate.txt existed, it will be overwritten
 
 cp dir1/original.txt dir2/duplicate.txt
@@ -184,5 +184,21 @@ head -n 3 seasonal/winter.csv > result.txt  # or, alternatively:
 
 # Stop running a program with Crtl + C (Ctrl + c)
 
+# 4. Batch processing ------------
+#+++++++++++++++++++++++++++++++++
 
+# "set" lists the environmental variables (long list)
+# We can pipe it trhough grep to filter by names:
+set | grep HISTFILESIZE
+set | grep HOME
+set | grep PWD
+set | grep SHELL
+set | grep USER
+
+# To print the value of a variable use echo
+echo USER
+echo $USER
+echo $HOME
+~
+# (How else does the shell store information?)  
 
