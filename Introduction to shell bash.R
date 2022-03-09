@@ -95,4 +95,94 @@ ls -F -R  # this provides a quite useful overview of your working directory
 # select columns from a file:
 cut -f 1-8, 10 -d , file.txt  # select -fields (columns) 1-8 and 10 -delimited by a comma
 
+# Get help about a command:
+man command-name
+info command-name
+
+# Print a list of recent commands with "history"
+history
+# typing !number will rerun that particular command in the list
+!35
+# you can also re-run the most recent use of a command:
+!add
+!git
+
+# 2.1 grep - print lines by their contents ------------
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# this could be pretty useful for searching inside your scripts
+
+# grep selects and prints lines according to what they contain
+# (You can search patterns, regular expressions, with grep)
+grep shit winter.csv  # prints lines containing "shit" in winter.csv
+# It has useful flags: 
+# -c: print a count of matching lines rather than the lines themselves
+# -h: do not print the names of files when searching multiple files
+# -i: ignore case (e.g., treat "Regression" and "regression" as matches)
+# -l: print the names of files that contain matches, not the matches
+# -n: print line numbers for matching lines
+# -v: invert the match, i.e., only show lines that don't match
+grep -n ls 'Introduction to shell bash.R' 
+grep -c ls 'Introduction to shell bash.R' 
+grep -c "Introduction to shell bash.R" "shell_commands.txt"
+
+
+# 3. Combining tools -----------
+#+++++++++++++++++++++++++++++++
+
+# Store a command's output in a file with >
+head -5 shell_commands.txt > top.txt
+
+# 3.1 Pipes ------------
+#+++++++++++++++++++++++
+ 
+# You can chain any number of commands with pipes
+# Pipes in shell are marked with | 
+cut -f 2 -d , summer.csv | grep -v Tooth
+# select column 2 in summer.csv and then exclude the line containing Tooth
+
+# Counting characters, words and lines (wc)
+grep 2017-07 spring.csv | wc -l
+# Find lines of July in spring.csv and then count them
+
+
+# 3.2 Wildcards ------------
+#+++++++++++++++++++++++++++
+# Most shell commands work with multiple files when adding many filenames
+# To make life easier, shell provides wildcards
+# * Means "mathc zero or more characters"
+cut -d , -f 1 seasonal/*
+grep cut -n *shell*  # prints the lines containing cut in all shell-files
+grep cut -c *shell*  # prints the number of lines in each of the 3 files
+  
+# Other wildcards:
+# ? Matches a single character
+# [...] Matches any of the characters inside the brackets:
+  201[78]  # could be 2017 or 2018
+# {...} Matches any comma-separated patterns inside the curly brackets
+{*.txt, *.csv}  # matches any txt and csv files
+
+# Sorting files with sort
+# by default sorts in ascending alphabetical order, but flags:
+# -n: does numerically
+# -r: reverses
+# -b: ignore leading blanks
+# -f: folds (be case insensitive)
+# Pipelines often use grep to get rid of unwanted records
+# and then sort out their result
+cut -d , -f 2 summer.csv | grep -v Tooth | sort -r | head -5
+
+# Remove duplicate files with uniq
+# Notice that it removes only adjacent duplicated
+# So yoou need to use it in pipeline after sort:
+cut -d , -f 2 seasonal/winter.csv | grep -v Tooth | sort | uniq -c
+# "uniq -c" adds a count of repetitions of each unique value
+
+# Of course we can store the output of a pipe with ">"
+head -n 3 seasonal/winter.csv > result.txt  # or, alternatively:
+> result.tx head -n 3 seasonal/winter.csv  # quite awkward...
+
+# Stop running a program with Crtl + C (Ctrl + c)
+
+
 
