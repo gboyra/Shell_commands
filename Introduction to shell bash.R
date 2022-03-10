@@ -28,7 +28,10 @@ ls .  # same as ls
 ls ..  # lists the parent directory
 cd ~  # home (not working) directory; this allways takes you home 
 ls ~
-  
+ 
+# Create files
+touch file.txt  # this creates an empty file
+   
 # Copy files
 cp original.txt duplicate.txt
 # if duplicate.txt existed, it will be overwritten
@@ -195,10 +198,61 @@ set | grep PWD
 set | grep SHELL
 set | grep USER
 
-# To print the value of a variable use echo
+# To print the value of a variable use echo and a $ sign:
 echo USER
 echo $USER
 echo $HOME
 ~
-# (How else does the shell store information?)  
+
+# Shell variables
+var.name=5
+echo $var.name
+testing=shell_commands.txt
+head -n 3 $testing
+
+# 4.1 Loops ------------
+#+++++++++++++++++++++++
+
+for filetype in gif jpg png; do echo $filetype; done
+# notice the structure of the for statement
+
+for filename in seasonal/*; do echo $filename; done
+for file in seasonal/*.csv; do head -n 2 $file | tail -n 1; done
+for file in seasonal/*.csv; do grep 2017-07 | tail -n 1; done
+
+# To do multiple tasks in a single loop, separate them with ";"
+for f in seasonal/*.csv; do echo $f; head -n 2 $f | tail -n 1; done
+# if you forget to add the ";":
+for f in seasonal/*.csv; do echo $f head -n 2 $f | tail -n 1; done
+# it will echo "$f" AND "head -n2 $f" one after the other in the same line
+
+
+# 5. Creating new tools ---------------
+#++++++++++++++++++++++++++++++++++++++
+
+# text editors
+nano file.txt
+# is a peculiar text editor embedded in the command line
+# Ctrl + K: delete a line
+# Ctrl + U: un-delete (paste) a line
+# Ctrl + O: save the file
+# Ctrl + X: exit the editor
+
+
+history tail -n 5 > last_commands.txt
+cp last_commands.txt ~  # copy them to the home directory (wherever this is)
+
+
+# 5.1 Shell scripts: Save commands to rerun later -------------
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Because the commands are just text, you can store them
+# in files for the shell to run them over again with "bash"
+nano phist.sh
+# inside nano: 
+history tail -n 5 > last_commands.txt  # then save and:
+bash phist.sh
+
+# How can I pass filenames to scripts? (last chapter)
+
 
