@@ -1,0 +1,7 @@
+    5  for filetype in gip jpg png; do echo $filetype; done
+    6  touch dirt/file1.txt
+    4  head -n 3 $testint
+    7  touch test.txt
+   11  history | tail -n 10
+   12  history | tail -n 10 > last.comands
+   13  history | tail -n 10 > last_commands.txt
