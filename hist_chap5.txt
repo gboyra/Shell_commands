@@ -1,0 +1,53 @@
+    1  git status
+    2  git log --oneline
+    3  nano phist.sh
+    4  history tail -n 5
+    5  history | head -n 5
+    6  history
+    7  history > hist_chap5.txt
+    8  nano hist_chap5.txt 
+    9  nano phist.sh 
+   10  bash phist.sh 
+   11  nano unique-lines.sh
+   12  bash unique-lines.sh hist_chap5.txt 
+   13  cat unique-lines.sh
+   14  cat phist.sh 
+   15  nano phist.sh 
+   16  cat phist.sh 
+   17  bash phist.sh
+   18  history | head -n 5
+   19  bash unique-lines.sh shell_commands.txt 
+   20  history
+   21  tail -n +2 history
+   22  history | tail -n +2
+   23  history
+   24  history | tail -n +10
+   25  history | tail -n -10
+   26  history | tail -q -n -10
+   27  history | tail -q -n -10 | wc -l
+   28  history | tail -q -n 10 | wc -l
+   29  history | tail -q -n +10 | wc -l
+   30  history
+   31  history | sort | uniq
+   32  nano column.sh
+   33  bash column.sh hist_chap5.txt 
+   34  bash column.sh phist.sh
+   35  nano get-field.sh
+   36  bash get-field.sh hist_chap5.txt 
+   37  history
+   38  history | sort | uniq
+   39  history
+   40  history | sort
+   41  grep history shell_commands.txt 
+   42  grep sort shell_commands.txt 
+   43  grep sort -n shell_commands.txt 
+   44  open shell_commands.txt 
+   45  history
+   46  history | sort
+   47  history > hist_chap5.txt 
+   48  cat hist_chap5.txt 
+   49  sort hist_chap5.txt 
+   50  grep "grep" shell_commands.txt 
+   51  grep -n  "grep" shell_commands.txt 
+   52  history
+   53  history > hist_chap5.txt 
