@@ -4,6 +4,8 @@
 
 # DataCamp course
 
+# 0. Help ------
+pwd --help
 
 # 1. Manipulating files and directories --------
 #++++++++++++++++++++++++++++++++++++++++++++++++
@@ -28,6 +30,7 @@ ls .  # same as ls
 ls ..  # lists the parent directory
 cd ~  # home (not working) directory; this allways takes you home 
 ls ~
+cd -  # back
  
 # Create files
 touch file.txt  # this creates an empty file
@@ -63,6 +66,8 @@ rm dir/*.txt
 # Remove directories
 rmdir dir1
 # your can only do this if they are empty
+# remove a directory and all its contents
+rm -r  # use carefully
 
 # Create directories
 mkdir newdir
@@ -204,7 +209,7 @@ echo $USER
 echo $HOME
 ~
 
-# Shell variables
+# 4.1 Shell variables ----------
 var.name=5
 echo $var.name
 testing=shell_commands.txt
@@ -239,7 +244,6 @@ nano file.txt
 # Ctrl + O: save the file
 # Ctrl + X: exit the editor
 
-
 history tail -n 5 > last_commands.txt
 cp last_commands.txt ~  # copy them to the home directory (wherever this is)
 
@@ -252,8 +256,8 @@ cp last_commands.txt ~  # copy them to the home directory (wherever this is)
 nano phist.sh
 # inside nano: 
 history tail -n 5 > last_commands.txt  # then save and:
-bash phist.sh  
-# for some reason, the bash doesn't seem to work for me 
+bash phist.sh  # bash executes the script
+# for some reason, the bash doesn't seem to work for this script 
 
 # How to pass filenames to scripts using "$@"
 # The $@ sign means "all the command line parameters given
@@ -261,6 +265,7 @@ bash phist.sh
 
 # inside unique-lines.sh:
 sort $@ | uniq
+# execute:
 bash unique-lines.sh hist_chap5.txt
 
 # inside count-records.sh:
@@ -281,7 +286,7 @@ head -n $1 $2 | tail -n 1 | cut -d , -f $3
 bash get-field.sh hist_chap5.txt
 
 
-# You can write loops inside shell scrips
+# You can write loops inside shell scripts
 # You can use semicolons or separate across lines: 
 for filename in $@ 
   do
