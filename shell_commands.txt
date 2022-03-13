@@ -233,6 +233,7 @@ for f in seasonal/*.csv; do echo $f head -n 2 $f | tail -n 1; done
 # text editors
 nano file.txt
 # is a peculiar text editor embedded in the command line
+# it has some useful shortcuts:
 # Ctrl + K: delete a line
 # Ctrl + U: un-delete (paste) a line
 # Ctrl + O: save the file
@@ -251,8 +252,51 @@ cp last_commands.txt ~  # copy them to the home directory (wherever this is)
 nano phist.sh
 # inside nano: 
 history tail -n 5 > last_commands.txt  # then save and:
-bash phist.sh
+bash phist.sh  
+# for some reason, the bash doesn't seem to work for me 
 
-# How can I pass filenames to scripts? (last chapter)
+# How to pass filenames to scripts using "$@"
+# The $@ sign means "all the command line parameters given
+# to the script"
+
+# inside unique-lines.sh:
+sort $@ | uniq
+bash unique-lines.sh hist_chap5.txt
+
+# inside count-records.sh:
+tail -q -n +2 | wc -l
+# numbered last commands (except the first one - "+2")
+# then count the lines
+tail -q -n -2 
+
+# scripts with multiple arguments:
+# inside column.sh:
+cut -d , -f $2 $1
+
+bash column.sh test.txt
+
+# inside get-field.sh:
+head -n $1 $2 | tail -n 1 | cut -d , -f $3
+
+bash get-field.sh hist_chap5.txt
+
+
+# You can write loops inside shell scrips
+# You can use semicolons or separate across lines: 
+for filename in $@ 
+  do
+    head -n 2 $filename | tail -n 1
+    tail -n 1 $filename
+  done
+# You can also write comments starting with "#"
+
+# You can pipe the output of the script as usual, e.g.:
+bash get-field hist-chap5.txt | sort | head -n 3
+
+# 5.2 Stop and cancel script runing --------------
+#+++++++++++++++++++++++++++++++++++++++++++++++++
+Ctrl + C
+
+
 
 
